@@ -1,0 +1,22 @@
+services:
+  fish-speech:
+    image: ghcr.io/openttsgroup/fish-speech-open-tts:latest
+    ports:
+      - "8004:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ../voices:/voices:ro
+    environment:
+      FISHSPEECH_MODEL: "fishaudio/s2-pro"
+      FISHSPEECH_QUANTIZATION: "int8"
+      FISHSPEECH_MAX_SEQ_LEN: "2560"
+      FISHSPEECH_WARMUP_TOKENS: "128"
+      FISHSPEECH_COMPILE: "true"
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

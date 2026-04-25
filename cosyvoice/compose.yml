@@ -1,0 +1,18 @@
+services:
+  cosyvoice-v3:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["v3"]
+    environment:
+      COSYVOICE_MODEL: "FunAudioLLM/Fun-CosyVoice3-0.5B-2512"
+      COSYVOICE_VARIANT: "v3"
+
+  cosyvoice-v2:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["v2"]
+    environment:
+      COSYVOICE_MODEL: "iic/CosyVoice2-0.5B"
+      COSYVOICE_VARIANT: "v2"

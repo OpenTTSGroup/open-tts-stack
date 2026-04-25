@@ -1,0 +1,18 @@
+services:
+  spark-tts:
+    image: ghcr.io/openttsgroup/spark-tts-open-tts:latest
+    ports:
+      - "8013:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ../voices:/voices:ro
+    environment:
+      SPARKTTS_MODEL: "SparkAudio/Spark-TTS-0.5B"
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

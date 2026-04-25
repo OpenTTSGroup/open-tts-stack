@@ -1,0 +1,18 @@
+services:
+  vibevoice-tts:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["tts"]
+    environment:
+      VIBEVOICE_VARIANT: "tts"
+      VIBEVOICE_MODEL: "microsoft/VibeVoice-1.5B"
+
+  vibevoice-realtime:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["realtime"]
+    environment:
+      VIBEVOICE_VARIANT: "realtime"
+      VIBEVOICE_MODEL: "microsoft/VibeVoice-Realtime-0.5B"

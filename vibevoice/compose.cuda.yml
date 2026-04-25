@@ -1,0 +1,17 @@
+services:
+  base-cuda:
+    image: ghcr.io/openttsgroup/vibevoice-open-tts:latest
+    ports:
+      - "8014:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ../voices:/voices:ro
+    environment:
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

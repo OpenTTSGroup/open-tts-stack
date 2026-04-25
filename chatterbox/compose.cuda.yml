@@ -1,0 +1,18 @@
+services:
+  base-cuda:
+    image: ghcr.io/openttsgroup/chatterbox-open-tts:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ./cache/pkuseg:/root/.pkuseg
+      - ../voices:/voices:ro
+    environment:
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

@@ -1,0 +1,16 @@
+services:
+  voxcpm-v2:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["v2"]
+    environment:
+      VOXCPM_MODEL: "openbmb/VoxCPM2"
+
+  voxcpm-v1:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["v1"]
+    environment:
+      VOXCPM_MODEL: "openbmb/VoxCPM-0.5B"

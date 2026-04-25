@@ -1,0 +1,18 @@
+services:
+  kokoro:
+    image: ghcr.io/openttsgroup/kokoro-open-tts:latest
+    ports:
+      - "8006:8000"
+    volumes:
+      - ./cache:/root/.cache
+    environment:
+      KOKORO_MODEL: "hexgrad/Kokoro-82M"
+      KOKORO_PRELOAD_LANGS: "a,z"
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

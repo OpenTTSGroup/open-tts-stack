@@ -1,0 +1,29 @@
+services:
+  qwen3-tts-base:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["base"]
+    environment:
+      QWEN3_VARIANT: "base"
+      QWEN3_MODEL: "Qwen/Qwen3-TTS-12Hz-1.7B-Base"
+      # QWEN3_MODEL: "Qwen/Qwen3-TTS-12Hz-0.6B-Base"
+
+  qwen3-tts-custom:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["custom"]
+    environment:
+      QWEN3_VARIANT: "customvoice"
+      QWEN3_MODEL: "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"
+      # QWEN3_MODEL: "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice"
+
+  qwen3-tts-design:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["design"]
+    environment:
+      QWEN3_VARIANT: "voicedesign"
+      QWEN3_MODEL: "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"

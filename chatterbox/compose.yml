@@ -1,0 +1,25 @@
+services:
+  chatterbox-multi:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["multi"]
+    environment:
+      CHATTERBOX_VARIANT: "multilingual"
+      CHATTERBOX_DEFAULT_LANGUAGE: "zh"
+
+  chatterbox-turbo:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["turbo"]
+    environment:
+      CHATTERBOX_VARIANT: "turbo"
+
+  chatterbox-standard:
+    extends:
+      file: compose.cuda.yml
+      service: base-cuda
+    profiles: ["standard"]
+    environment:
+      CHATTERBOX_VARIANT: "standard"

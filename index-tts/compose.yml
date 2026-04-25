@@ -1,0 +1,18 @@
+services:
+  index-tts:
+    image: ghcr.io/openttsgroup/index-tts-open-tts:latest
+    ports:
+      - "8005:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ../voices:/voices:ro
+    environment:
+      INDEX_TTS_MODEL: "IndexTeam/IndexTTS-2"
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

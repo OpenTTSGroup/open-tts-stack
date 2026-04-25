@@ -1,0 +1,18 @@
+services:
+  omnivoice:
+    image: ghcr.io/openttsgroup/omnivoice-open-tts:latest
+    ports:
+      - "8010:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ../voices:/voices:ro
+    environment:
+      OMNIVOICE_MODEL: "k2-fsa/OmniVoice"
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

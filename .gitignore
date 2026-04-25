@@ -1,0 +1,6 @@
+cache/
+checkpoints/
+models/
+voices/
+*.wav
+*.mp3

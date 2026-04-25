@@ -1,0 +1,18 @@
+services:
+  f5-tts:
+    image: ghcr.io/openttsgroup/f5-tts-open-tts:latest
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./cache:/root/.cache
+      - ../voices:/voices:ro
+    environment:
+      F5TTS_MODEL: "F5TTS_v1_Base"
+      HF_ENDPOINT: "https://hf-mirror.com"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
